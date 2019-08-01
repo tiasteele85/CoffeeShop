@@ -1,11 +1,20 @@
-package grandcircus.co.coffeeshop.entity;
+package grandcircus.co.coffeeshop.hibernate.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class Users {
 	
+	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(length = 50)
 	private String username;
+	@Column(length = 50)
 	private String password;
+	@Column(length = 50)
 	private String firstname;
+	@Column(length = 50)
 	private String lastname;
 	
 	public Users() {}
@@ -63,6 +72,5 @@ public class Users {
 	public void setId(Long id) {
 		this.id = id;
 	}
-		
 	
 }

@@ -5,31 +5,44 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Rooms</title>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<link href="/temp.css" rel="stylesheet" /> 
+<title>Coffee Shop</title>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/united/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-WTtvlZJeRyCiKUtbQ88X1x9uHmKi0eHCbQ8irbzqSLkE0DpAZuixT5yFvgX0CjIu"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/style.css" />
 </head>
 <body>
 	<div class="container">
-		<h1>Wildly Exciting Coffee</h1>
-		<p><a href="/user-form">Register</a></p>
+		<h1 class="text-primary">Wildly Exciting Coffee</h1>
+		<div align="right">
+			<a href="/user-form" class="btn btn-info">Register</a> <a
+				href="/admin" class="btn btn-danger">Admin</a>
+			<p></p>
+		</div>
+		<header>
+		<span> Hello ${ preference.firstname } </span>
+		</header>
 		<table class="table">
-			<thead>
+			<thead class="text-primary">
 				<tr>
-					<th>Products</th><th>Description</th><th>Price</th>
+					<th>Products</th>
+					<th>Description</th>
+					<th>Price</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="classroom" items="${products}">
-				<tr>
-					<td>${classroom.name}</td>
-					<td>${classroom.description}</td>
-					<td>${classroom.price}</td>
-				</tr>
+				<c:forEach var="product" items="${products}">
+					<tr>
+						<td>${product.name}</td>
+						<td>${product.description}</td>
+						<td>${product.price}</td>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		
+
 	</div>
 </body>
 </html>

@@ -1,10 +1,22 @@
-package grandcircus.co.coffeeshop.entity;
+package grandcircus.co.coffeeshop.hibernate.entity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="products")
 public class Products {
 	
+	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(length = 50)
 	private String name;
-	private String description;
+	@Column(length = 50)
+	private String description;	
 	double price;
 	
 	public Products() {}
@@ -42,7 +54,10 @@ public class Products {
 	}
 
 	public double getPrice() {
-		return price;
+		
+		BigDecimal bd = new BigDecimal(price).setScale(2, RoundingMode.HALF_UP);         
+		return bd.doubleValue();
+		
 	}
 
 	public void setPrice(double price) {
@@ -53,8 +68,5 @@ public class Products {
 	public String toString() {
 		return "Products [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
 	}
-	
-	
-	
 	
 }

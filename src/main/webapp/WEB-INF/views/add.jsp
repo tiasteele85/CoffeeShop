@@ -10,26 +10,25 @@
 	rel="stylesheet"
 	integrity="sha384-WTtvlZJeRyCiKUtbQ88X1x9uHmKi0eHCbQ8irbzqSLkE0DpAZuixT5yFvgX0CjIu"
 	crossorigin="anonymous">
-<link rel= "stylesheet" href="/style.css"/>
+	<link rel= "stylesheet" href="/style.css"/>
 </head>
 <body>
 	<div class="container">
-		<h1 class="text-primary">User Info</h1>
-		<form action="/thank-you" method="post">
+		<h1 class="text-primary">Add</h1>
+		<p></p>
+		<form method="post">
 			<p>
-				Username:<input type="Text" name=username>
+				Product Name:<input type="Text" name="name">
 			</p>
 			<p>
-				Password:<input type="password" name=password>
+				Description:<input type="Text" name="description"
+					placeholder="40 characters">
 			</p>
 			<p>
-				First name:<input type="Text" name=firstname>
-			</p>
-			<p>
-				Last name:<input type="Text" name=lastname>
+				Price:<input type="number" name="price" min=1 step="0.01">
 			</p>
 			<button type="submit" class="btn btn-info">Submit</button>
-			<a class="btn btn-secondary" href="/products">Cancel</a>
+			<a href="/admin" class="btn btn-secondary">Cancel</a>
 		</form>
 	</div>
 </body>
