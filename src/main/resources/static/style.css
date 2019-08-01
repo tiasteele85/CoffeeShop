@@ -1,5 +1,5 @@
-.body{
-	background-image: URL("coffee_WhiteTop.jpg");
+body{
+	background-image: url("coffee_WhiteTop.jpg");
 	background-repeat: no-repeat;
   	background-size: 100%;
 }
