@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import grandcircus.co.coffeeshop.hibernate.dao.ProductsDao;
+import grandcircus.co.coffeeshop.hibernate.dao.UserRepository;
 import grandcircus.co.coffeeshop.hibernate.dao.UsersDao;
 import grandcircus.co.coffeeshop.hibernate.entity.Products;
 import grandcircus.co.coffeeshop.hibernate.entity.Users;
@@ -24,6 +25,8 @@ public class CoffeeShopController {
 	private ProductsDao pDao;
 	@Autowired
 	private UsersDao uDao;
+	@Autowired
+	private UserRepository urDao;
 	
 	@RequestMapping("/")
 	public ModelAndView index() {
@@ -108,5 +111,42 @@ public class CoffeeShopController {
 		
 	}
 	
+	@RequestMapping("/login")
+	public ModelAndView showLoginPage() {
+		
+		return new ModelAndView("/login");
+	}
+	
+	@PostMapping("/login")
+	public ModelAndView testLogin(
+			@RequestParam("username") String username,
+			@RequestParam("password") String password,
+			HttpSession session) {
+			
+				
+		Users user = urDao.findByUsernameAndPassword(username, password);
+		//Test for Admin Page
+		if(username.equals("Admin") && user.getPassword().equals(password)) {
+			
+			ModelAndView mv = new ModelAndView("redirect:/admin");
+			return mv;
+		}
+		
+			
+		if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+			session.setAttribute("preference", user);
+		}
+		ModelAndView mv = new ModelAndView("redirect:/products");
+		return mv;
+		
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		// This clears the session and starts a brand new clean one.
+		session.invalidate();
+		
+		return new ModelAndView("redirect:/products");
+	}
 }
 

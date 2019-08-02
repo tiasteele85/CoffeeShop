@@ -17,12 +17,20 @@
 	<div class="container">
 		<h1 class="text-primary">Wildly Exciting Coffee</h1>
 		<div align="right">
-			<a href="/user-form" class="btn btn-info">Register</a> <a
-				href="/admin" class="btn btn-danger">Admin</a>
+			<a href="/user-form" class="btn btn-info">Register</a> 
+			<c:if test="${ empty preference.firstname }">
+				<a href="/login" class="btn btn-danger">Login</a>
+			</c:if>
+			<c:if test="${not empty preference.firstname }">
+				<a href="/logout" class="btn btn-danger">Logout</a>
+				<p align="left">
+				<span > Hello ${ preference.firstname } </span>
+				</p>
+			</c:if>
 			<p></p>
 		</div>
 		<header>
-		<span> Hello ${ preference.firstname } </span>
+		
 		</header>
 		<table class="table">
 			<thead class="text-primary">
